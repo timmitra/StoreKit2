@@ -14,12 +14,24 @@ import StoreKit
 
 struct ContentView: View {
     @AppStorage("subscribed") private var subscribed: Bool = false
+    @State private var lifetimePage: Bool = false
     
     var body: some View {
         SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all) {
             StoreContent()
                 .containerBackground(Color.iTGuyLtBlue.gradient, for: .subscriptionStoreHeader)
         }
+        .backgroundStyle(.clear)
+        .subscriptionStorePickerItemBackground(.thinMaterial)
+        .storeButton(.visible, for: .restorePurchases)
+        .sheet(isPresented: $lifetimePage) {
+          LifetimeStoreView()
+            .presentationDetents([.height(250)])
+            .presentationBackground(.ultraThinMaterial)
+        }
+        Button("More Purchase Options", action: {
+          lifetimePage = true
+        })
     }
 }
 
