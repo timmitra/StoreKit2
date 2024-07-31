@@ -15,6 +15,8 @@ import StoreKit
 struct ContentView: View {
     @AppStorage("subscribed") private var subscribed: Bool = false
     @State private var lifetimePage: Bool = false
+    @State var purchaseStart: Bool = false
+    @StateObject var store: Store = Store()
     
     var body: some View {
         SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all) {
@@ -24,6 +26,21 @@ struct ContentView: View {
         .backgroundStyle(.clear)
         .subscriptionStorePickerItemBackground(.thinMaterial)
         .storeButton(.visible, for: .restorePurchases)
+        .overlay {
+            if purchaseStart {
+                ProgressView().controlSize(.extraLarge)
+            }
+        }
+        .onInAppPurchaseStart { product in
+            purchaseStart.toggle()
+        }
+        .onInAppPurchaseCompletion { product, result in
+            purchaseStart.toggle()
+            Task {
+                await store.updateCustomerProductStatus()
+                await updateSubscriptionStatus()
+            }
+        }
         .sheet(isPresented: $lifetimePage) {
           LifetimeStoreView()
             .presentationDetents([.height(250)])
@@ -32,6 +49,17 @@ struct ContentView: View {
         Button("More Purchase Options", action: {
           lifetimePage = true
         })
+    }
+    
+    @MainActor
+    func updateSubscriptionStatus() async {
+        if store.subscriptionGroupStatus == .subscribed
+        || store.subscriptionGroupStatus == .inGracePeriod
+            || store.purchasedLifetime {
+            subscribed = true
+        } else {
+            subscribed = false
+        }
     }
 }
 
