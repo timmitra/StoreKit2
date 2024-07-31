@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all) {
             StoreContent()
-                .containerBackground(Color.cyan.gradient, for: .subscriptionStoreHeader)
+                .containerBackground(Color.iTGuyLtBlue.gradient, for: .subscriptionStoreHeader)
         }
     }
 }
