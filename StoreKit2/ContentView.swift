@@ -10,16 +10,15 @@
 
 
 import SwiftUI
+import StoreKit
 
 struct ContentView: View {
+    @AppStorage("subscribed") private var subscribed: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all)
+        StoreContent()
+            .containerBackground(Color.cyan.gradient, for: .subscriptionStoreHeader)
     }
 }
 
