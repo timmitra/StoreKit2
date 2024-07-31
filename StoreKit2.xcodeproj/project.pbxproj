@@ -14,6 +14,7 @@
 		2AF4F1B02C5A974F0043273E /* SampleStore.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */; };
 		2AF4F1B22C5A9A050043273E /* StoreContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B12C5A9A050043273E /* StoreContent.swift */; };
 		2AF4F1B42C5AA1AB0043273E /* LifetimeStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */; };
+		2AF4F1B62C5AA49F0043273E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B52C5AA49F0043273E /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SampleStore.storekit; sourceTree = "<group>"; };
 		2AF4F1B12C5A9A050043273E /* StoreContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContent.swift; sourceTree = "<group>"; };
 		2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeStoreView.swift; sourceTree = "<group>"; };
+		2AF4F1B52C5AA49F0043273E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				2AF4F1A72C5A963A0043273E /* Preview Content */,
 				2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */,
 				2AF4F1B12C5A9A050043273E /* StoreContent.swift */,
+				2AF4F1B52C5AA49F0043273E /* Store.swift */,
 			);
 			path = StoreKit2;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF4F1B62C5AA49F0043273E /* Store.swift in Sources */,
 				2AF4F1A42C5A96390043273E /* ContentView.swift in Sources */,
 				2AF4F1B42C5AA1AB0043273E /* LifetimeStoreView.swift in Sources */,
 				2AF4F1B22C5A9A050043273E /* StoreContent.swift in Sources */,
