@@ -97,7 +97,7 @@
           "localizations" : [
             {
               "description" : "Get all app features for one year",
-              "displayName" : "Yealry Subscription",
+              "displayName" : "Yearly Subscription",
               "locale" : "en_US"
             }
           ],

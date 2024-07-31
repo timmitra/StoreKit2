@@ -16,9 +16,10 @@ struct ContentView: View {
     @AppStorage("subscribed") private var subscribed: Bool = false
     
     var body: some View {
-        SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all)
-        StoreContent()
-            .containerBackground(Color.cyan.gradient, for: .subscriptionStoreHeader)
+        SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all) {
+            StoreContent()
+                .containerBackground(Color.cyan.gradient, for: .subscriptionStoreHeader)
+        }
     }
 }
 
