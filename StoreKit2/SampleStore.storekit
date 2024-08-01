@@ -21,7 +21,12 @@
     }
   ],
   "settings" : {
+    "_compatibilityTimeRate" : {
+      "3" : 6
+    },
     "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
     "_storeKitErrors" : [
       {
         "current" : null,
@@ -29,7 +34,10 @@
         "name" : "Load Products"
       },
       {
-        "current" : null,
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
         "enabled" : false,
         "name" : "Purchase"
       },
@@ -44,8 +52,11 @@
         "name" : "App Store Sync"
       },
       {
-        "current" : null,
-        "enabled" : false,
+        "current" : {
+          "index" : 1,
+          "type" : "generic"
+        },
+        "enabled" : true,
         "name" : "Subscription Status"
       },
       {
@@ -68,7 +79,8 @@
         "enabled" : false,
         "name" : "Offer Code Redeem Sheet"
       }
-    ]
+    ],
+    "_timeRate" : 1001
   },
   "subscriptionGroups" : [
     {
