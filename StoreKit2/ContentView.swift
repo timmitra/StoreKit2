@@ -32,6 +32,7 @@ struct ContentView: View {
             }
         }
         .onInAppPurchaseStart { product in
+            print("User has started buying \(product.id)")
             purchaseStart.toggle()
         }
         .onInAppPurchaseCompletion { product, result in
@@ -39,6 +40,13 @@ struct ContentView: View {
             Task {
                 await store.updateCustomerProductStatus()
                 await updateSubscriptionStatus()
+            }
+            if case .success(.success(let transaction)) = result {
+                print("Purchased successfully: \(transaction.signedDate)")
+              // update app storage
+              subscribed = true
+            } else {
+                print("Something else happened")
             }
         }
         .sheet(isPresented: $lifetimePage) {
