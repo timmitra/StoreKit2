@@ -98,7 +98,9 @@ class Store: ObservableObject {
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
-                
+                if transaction.id == 0 {
+                    print("no transaction")
+                }
                 switch transaction.productType {
                 case .nonConsumable:
                     purchasedLifetime = true

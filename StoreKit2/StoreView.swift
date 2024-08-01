@@ -12,8 +12,9 @@
 import SwiftUI
 import StoreKit
 
-struct ContentView: View {
+struct StoreView: View {
     @AppStorage("subscribed") private var subscribed: Bool = false
+    @Environment(\.dismiss) private var dismiss
     @State private var lifetimePage: Bool = false
     @State var purchaseStart: Bool = false
     @StateObject var store: Store = Store()
@@ -40,6 +41,10 @@ struct ContentView: View {
                 await store.updateCustomerProductStatus()
                 await updateSubscriptionStatus()
             }
+            dismiss()
+        }
+        .onAppear {
+            printAppStorageValue()
         }
         .sheet(isPresented: $lifetimePage) {
           LifetimeStoreView()
@@ -55,14 +60,20 @@ struct ContentView: View {
     func updateSubscriptionStatus() async {
         if store.subscriptionGroupStatus == .subscribed
         || store.subscriptionGroupStatus == .inGracePeriod
-            || store.purchasedLifetime {
+        || store.purchasedLifetime {
             subscribed = true
+        } else if store.subscriptionGroupStatus == .expired {
+            subscribed = false
         } else {
             subscribed = false
         }
     }
+    // Function to print the AppStorage value
+    func printAppStorageValue() {
+        print("AppStorage 'subscribed' value: \(subscribed)")
+    }
 }
 
 #Preview {
-    ContentView()
+    StoreView()
 }
