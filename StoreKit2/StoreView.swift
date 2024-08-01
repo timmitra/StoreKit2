@@ -20,7 +20,7 @@ struct StoreView: View {
     @StateObject var store: Store = Store()
     
     var body: some View {
-        SubscriptionStoreView(groupID: "16C7A6B6", visibleRelationships: .all) {
+        SubscriptionStoreView(groupID: "21520171", visibleRelationships: .all) {
             StoreContent()
                 .containerBackground(Color.iTGuyLtBlue.gradient, for: .subscriptionStoreHeader)
         }
@@ -42,20 +42,19 @@ struct StoreView: View {
                 await store.updateCustomerProductStatus()
                 await updateSubscriptionStatus()
             }
-<<<<<<< HEAD:StoreKit2/StoreView.swift
+            if case .success(.success(let transaction)) = result {
+                print("Purchased successfully: \(transaction.signedDate)")
+              // update app storage
+              //subscribed = true
+                print("StoreView - AppStorage 'subscribed' value: \(subscribed)")
+            } else {
+                print("Something else happened")
+            }
             dismiss()
         }
         .onAppear {
             printAppStorageValue()
-=======
-            if case .success(.success(let transaction)) = result {
-                print("Purchased successfully: \(transaction.signedDate)")
-              // update app storage
-              subscribed = true
-            } else {
-                print("Something else happened")
-            }
->>>>>>> main:StoreKit2/ContentView.swift
+            
         }
         .sheet(isPresented: $lifetimePage) {
           LifetimeStoreView()
