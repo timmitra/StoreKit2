@@ -1,0 +1,1 @@
+This is my build of the **StoreKit2** SubscriptionStoreView by [**CodeFruitDev**](https://github.com/codefruitdev) from his Youtube post [Monentize apps with storekit2](https://www.youtube.com/watch?v=kHlRMFnyl1Y)

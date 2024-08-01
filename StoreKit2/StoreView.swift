@@ -33,6 +33,7 @@ struct StoreView: View {
             }
         }
         .onInAppPurchaseStart { product in
+            print("User has started buying \(product.id)")
             purchaseStart.toggle()
         }
         .onInAppPurchaseCompletion { product, result in
@@ -41,10 +42,20 @@ struct StoreView: View {
                 await store.updateCustomerProductStatus()
                 await updateSubscriptionStatus()
             }
+<<<<<<< HEAD:StoreKit2/StoreView.swift
             dismiss()
         }
         .onAppear {
             printAppStorageValue()
+=======
+            if case .success(.success(let transaction)) = result {
+                print("Purchased successfully: \(transaction.signedDate)")
+              // update app storage
+              subscribed = true
+            } else {
+                print("Something else happened")
+            }
+>>>>>>> main:StoreKit2/ContentView.swift
         }
         .sheet(isPresented: $lifetimePage) {
           LifetimeStoreView()
