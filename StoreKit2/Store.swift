@@ -104,9 +104,11 @@ class Store: ObservableObject {
                 switch transaction.productType {
                 case .nonConsumable:
                     purchasedLifetime = true
+                    print("subscribed: lifetime")
                 case .autoRenewable:
                     if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
                         purchasedSubscriptions.append(subscription)
+                        print("subscribed: \(subscription)")
                     }
                 default:
                     break
