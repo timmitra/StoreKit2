@@ -52,7 +52,7 @@ struct HomeView: View {
     }
     // Function to print the AppStorage value
     func printAppStorageValue() {
-        print("AppStorage 'subscribed' value: \(subscribed)")
+        print("HomeView - AppStorage 'subscribed' value: \(subscribed)")
     }
 }
 
