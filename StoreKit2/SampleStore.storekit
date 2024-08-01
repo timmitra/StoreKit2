@@ -84,7 +84,7 @@
   },
   "subscriptionGroups" : [
     {
-      "id" : "16C7A6B6",
+      "id" : "21520171",
       "localizations" : [
 
       ],
@@ -116,7 +116,7 @@
           "productID" : "yearly_subscription",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Yearly Subscription",
-          "subscriptionGroupID" : "16C7A6B6",
+          "subscriptionGroupID" : "21520171",
           "type" : "RecurringSubscription"
         },
         {
@@ -146,7 +146,7 @@
           "productID" : "monthly_subscription",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly Subscription",
-          "subscriptionGroupID" : "16C7A6B6",
+          "subscriptionGroupID" : "21520171",
           "type" : "RecurringSubscription"
         }
       ]
