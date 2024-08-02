@@ -113,9 +113,7 @@ class Store: ObservableObject {
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
-                if transaction.id == 0 {
-                    print("no transaction")
-                }
+                
                 switch transaction.productType {
                 case .nonConsumable:
                     purchasedLifetime = true
@@ -147,7 +145,7 @@ class Store: ObservableObject {
         if subscriptionGroupStatus == .expired {
             UserDefaults.standard.set(false, forKey: "isSubscribed")
         }
-        print("AppStorage 'isSubscribed' updated to: \(UserDefaults.standard.bool(forKey: "isSubscribed"))")
+        print("expired? AppStorage 'isSubscribed' updated to: \(UserDefaults.standard.bool(forKey: "isSubscribed"))")
     }
     
     @MainActor

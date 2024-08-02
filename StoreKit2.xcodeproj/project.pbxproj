@@ -14,7 +14,6 @@
 		2AF4F1A42C5A96390043273E /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1A32C5A96390043273E /* StoreView.swift */; };
 		2AF4F1A62C5A963A0043273E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF4F1A52C5A963A0043273E /* Assets.xcassets */; };
 		2AF4F1A92C5A963A0043273E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF4F1A82C5A963A0043273E /* Preview Assets.xcassets */; };
-		2AF4F1B02C5A974F0043273E /* SampleStore.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */; };
 		2AF4F1B22C5A9A050043273E /* StoreContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B12C5A9A050043273E /* StoreContent.swift */; };
 		2AF4F1B42C5AA1AB0043273E /* LifetimeStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */; };
 		2AF4F1B62C5AA49F0043273E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1B52C5AA49F0043273E /* Store.swift */; };
@@ -22,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2A04C0D02C5D4E780024AD44 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2A04C0D42C5D79D80024AD44 /* SampleStore.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SampleStore.storekit; sourceTree = "<group>"; };
 		2A561BE62C5D28CC005BAE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A7539562C5ACEA900EBE06F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2A7539582C5AD59400EBE06F /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
@@ -30,7 +30,6 @@
 		2AF4F1A32C5A96390043273E /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		2AF4F1A52C5A963A0043273E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AF4F1A82C5A963A0043273E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SampleStore.storekit; sourceTree = "<group>"; };
 		2AF4F1B12C5A9A050043273E /* StoreContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContent.swift; sourceTree = "<group>"; };
 		2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeStoreView.swift; sourceTree = "<group>"; };
 		2AF4F1B52C5AA49F0043273E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -82,11 +81,11 @@
 				2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */,
 				2AF4F1A52C5A963A0043273E /* Assets.xcassets */,
 				2AF4F1A72C5A963A0043273E /* Preview Content */,
-				2AF4F1AF2C5A974F0043273E /* SampleStore.storekit */,
 				2AF4F1B12C5A9A050043273E /* StoreContent.swift */,
 				2AF4F1B52C5AA49F0043273E /* Store.swift */,
 				2A7539562C5ACEA900EBE06F /* HomeView.swift */,
 				2A7539582C5AD59400EBE06F /* NewView.swift */,
+				2A04C0D42C5D79D80024AD44 /* SampleStore.storekit */,
 			);
 			path = StoreKit2;
 			sourceTree = "<group>";
@@ -158,7 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AF4F1A92C5A963A0043273E /* Preview Assets.xcassets in Resources */,
-				2AF4F1B02C5A974F0043273E /* SampleStore.storekit in Resources */,
 				2AF4F1A62C5A963A0043273E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +307,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"StoreKit2/Preview Content\"";
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;
@@ -341,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"StoreKit2/Preview Content\"";
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;

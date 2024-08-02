@@ -1,13 +1,13 @@
 {
-  "identifier" : "6BC715A6",
+  "identifier" : "88D093CA",
   "nonRenewingSubscriptions" : [
 
   ],
   "products" : [
     {
       "displayPrice" : "99.99",
-      "familyShareable" : false,
-      "internalID" : "4855C95F",
+      "familyShareable" : true,
+      "internalID" : "6596775145",
       "localizations" : [
         {
           "description" : "Get all app features for life.",
@@ -21,10 +21,13 @@
     }
   ],
   "settings" : {
+    "_applicationInternalID" : "6596774897",
     "_compatibilityTimeRate" : {
       "3" : 6
     },
+    "_developerTeamID" : "476QK54UU2",
     "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 744323548.10152805,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -34,10 +37,7 @@
         "name" : "Load Products"
       },
       {
-        "current" : {
-          "index" : 1,
-          "type" : "purchase"
-        },
+        "current" : null,
         "enabled" : false,
         "name" : "Purchase"
       },
@@ -52,10 +52,7 @@
         "name" : "App Store Sync"
       },
       {
-        "current" : {
-          "index" : 1,
-          "type" : "generic"
-        },
+        "current" : null,
         "enabled" : false,
         "name" : "Subscription Status"
       },
@@ -88,37 +85,8 @@
       "localizations" : [
 
       ],
-      "name" : "Subscriptions",
+      "name" : "Subcriptions",
       "subscriptions" : [
-        {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "49.99",
-          "familyShareable" : true,
-          "groupNumber" : 1,
-          "internalID" : "5253ACA9",
-          "introductoryOffer" : {
-            "internalID" : "1DA692B3",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1W"
-          },
-          "localizations" : [
-            {
-              "description" : "Get all app features for one year",
-              "displayName" : "Yearly Subscription",
-              "locale" : "en_US"
-            }
-          ],
-          "productID" : "yearly_subscription",
-          "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Yearly Subscription",
-          "subscriptionGroupID" : "21520171",
-          "type" : "RecurringSubscription"
-        },
         {
           "adHocOffers" : [
 
@@ -128,14 +96,9 @@
           ],
           "displayPrice" : "4.99",
           "familyShareable" : true,
-          "groupNumber" : 1,
-          "internalID" : "6FF8DE1E",
-          "introductoryOffer" : {
-            "displayPrice" : "0.99",
-            "internalID" : "C676A691",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
-          },
+          "groupNumber" : 2,
+          "internalID" : "6596775124",
+          "introductoryOffer" : null,
           "localizations" : [
             {
               "description" : "Get all app features for one month",
@@ -146,6 +109,31 @@
           "productID" : "monthly_subscription",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly Subscription",
+          "subscriptionGroupID" : "21520171",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "49.99",
+          "familyShareable" : true,
+          "groupNumber" : 1,
+          "internalID" : "6596775171",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Get all app features for one year",
+              "displayName" : "Yearly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "yearly_subscription",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Yearly Subscription",
           "subscriptionGroupID" : "21520171",
           "type" : "RecurringSubscription"
         }
