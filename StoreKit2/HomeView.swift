@@ -13,24 +13,32 @@ import SwiftUI
 import StoreKit
 
 struct HomeView: View {
-    @AppStorage("subscribed") private var subscribed: Bool = false
+    @AppStorage("isSubscribed") private var isSubscribed: Bool = false
     @State private var showStoreView: Bool = false
     @State private var showNewView: Bool = false
-    @StateObject var store: Store = Store()
+    @EnvironmentObject private var store: Store
 
     var body: some View {
         ZStack {
             VStack {
-                Text(subscribed ? "Thanks" : "Choose a plan.")
+                Text(isSubscribed ? "Thanks" : "Choose a plan.")
                     .font(.largeTitle.bold())
-                Text(subscribed ? "You are subscribed" : "A purchase is required to use this app.")
+                Text(isSubscribed ? "You are subscribed" : "A purchase is required to use this app.")
                 Image("ios-marketing")
                     .resizable()
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 20.0))
                     .frame(width: 100)
-                if (subscribed == true) {
-                    let _ = print("subscribed value: \(subscribed)")
+                
+                if store.purchasedSubscriptions.isEmpty {
+                    
+                    Button("Show Store") {
+                        showStoreView = true
+                    }
+                }
+                
+                if (isSubscribed == true) {
+                    let _ = print("isSubscribed value: \(isSubscribed)")
                     Button("New View") {
                         showNewView = true
                     }
@@ -42,6 +50,14 @@ struct HomeView: View {
             }
             .onAppear {
                 printAppStorageValue()
+                Task {
+                    await store.updateCustomerProductStatus()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                Task {
+                    await store.updateCustomerProductStatus()
+                }
             }
             .sheet(isPresented: $showStoreView, content: {
                 StoreView()
@@ -53,7 +69,10 @@ struct HomeView: View {
     }
     // Function to print the AppStorage value
     func printAppStorageValue() {
-        print("HomeView - AppStorage 'subscribed' value: \(subscribed)")
+        print("HomeView - AppStorage 'isSubscribed' value: \(isSubscribed)")
+    }
+    func setFalse() {
+        isSubscribed = false
     }
 }
 
