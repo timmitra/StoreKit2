@@ -13,9 +13,17 @@ import SwiftUI
 
 @main
 struct StoreKit2App: App {
+    @StateObject var store = Store()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(store)
+                .onAppear {
+                    Task {
+                        await store.updateCustomerProductStatus()
+                    }
+                }
         }
     }
 }
