@@ -12,8 +12,21 @@
 import SwiftUI
 
 struct NewView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text("Welcome to NewView!")
+        NavigationStack {
+            Text("Welcome to NewView!")
+                .navigationTitle("NewView")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Close") {
+                            dismiss()
+                        }
+                    }
+                }
+        }
     }
 }
 

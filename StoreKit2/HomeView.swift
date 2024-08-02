@@ -30,6 +30,7 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20.0))
                     .frame(width: 100)
                 if (subscribed == true) {
+                    let _ = print("subscribed value: \(subscribed)")
                     Button("New View") {
                         showNewView = true
                     }
