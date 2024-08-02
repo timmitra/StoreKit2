@@ -10,7 +10,7 @@ import SwiftUI
 import StoreKit
 
 struct LifetimeStoreView: View {
-  @AppStorage("subscribed") private var subscribed = false
+  @AppStorage("isSubscribed") private var isSubscribed = false
   @Environment(\.dismiss) private var dismiss
   
     var body: some View {
@@ -36,7 +36,7 @@ struct LifetimeStoreView: View {
             if case .success(.success(let transaction)) = result {
                 print("Purchased successfully: \(transaction.signedDate)")
               // update app storage
-              subscribed = true
+                isSubscribed = true
               dismiss()
             } else {
                 print("Something else happened")
