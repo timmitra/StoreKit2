@@ -10,13 +10,20 @@
 
 
 import SwiftUI
+import StoreKit
 
 struct NewView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var showSubscriptions = false
     
     var body: some View {
         NavigationStack {
-            Text("Welcome to NewView!")
+            VStack {
+                Text("Welcome to NewView!")
+                Button("Manage Suscriptions") {
+                    showSubscriptions = true
+                }
+            }
                 .navigationTitle("NewView")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -26,6 +33,7 @@ struct NewView: View {
                         }
                     }
                 }
+                .manageSubscriptionsSheet(isPresented: $showSubscriptions)
         }
     }
 }
