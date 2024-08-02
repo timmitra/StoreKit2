@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A04C0D12C5D4E780024AD44 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A04C0D02C5D4E780024AD44 /* StoreKit.framework */; };
 		2A7539572C5ACEA900EBE06F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7539562C5ACEA900EBE06F /* HomeView.swift */; };
 		2A7539592C5AD59400EBE06F /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7539582C5AD59400EBE06F /* NewView.swift */; };
 		2AF4F1A22C5A96390043273E /* StoreKit2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4F1A12C5A96390043273E /* StoreKit2App.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A04C0D02C5D4E780024AD44 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2A561BE62C5D28CC005BAE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A7539562C5ACEA900EBE06F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2A7539582C5AD59400EBE06F /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
@@ -39,17 +41,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A04C0D12C5D4E780024AD44 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A04C0CF2C5D4E780024AD44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A04C0D02C5D4E780024AD44 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2AF4F1952C5A96390043273E = {
 			isa = PBXGroup;
 			children = (
 				2AF4F1A02C5A96390043273E /* StoreKit2 */,
 				2AF4F19F2C5A96390043273E /* Products */,
+				2A04C0CF2C5D4E780024AD44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -295,8 +307,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"StoreKit2/Preview Content\"";
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;
@@ -314,6 +327,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.it-guy.StoreKit2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,8 +339,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"StoreKit2/Preview Content\"";
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;
@@ -344,6 +359,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.it-guy.StoreKit2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
