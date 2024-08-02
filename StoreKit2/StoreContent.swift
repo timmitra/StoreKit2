@@ -12,14 +12,14 @@
 import SwiftUI
 
 struct StoreContent: View {
-    @AppStorage("subscribed") private var subscribed: Bool = false
+    @AppStorage("isSubscribed") private var isSubscribed: Bool = false
     
     var body: some View {
         ZStack {
             VStack {
-                Text(subscribed ? "Thanks" : "Choose a plan.")
+                Text(isSubscribed ? "Thanks" : "Choose a plan.")
                     .font(.largeTitle.bold())
-                Text(subscribed ? "You are subscribed" : "A purchase is required to use this app.")
+                Text(isSubscribed ? "You are isSubscribed" : "A purchase is required to use this app.")
                 Image("ios-marketing")
                   .resizable()
                   .scaledToFit()
