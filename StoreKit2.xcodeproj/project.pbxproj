@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A561BE62C5D28CC005BAE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A7539562C5ACEA900EBE06F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2A7539582C5AD59400EBE06F /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
 		2AF4F19E2C5A96390043273E /* StoreKit2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreKit2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +64,7 @@
 		2AF4F1A02C5A96390043273E /* StoreKit2 */ = {
 			isa = PBXGroup;
 			children = (
+				2A561BE62C5D28CC005BAE31 /* Info.plist */,
 				2AF4F1A12C5A96390043273E /* StoreKit2App.swift */,
 				2AF4F1A32C5A96390043273E /* StoreView.swift */,
 				2AF4F1B32C5AA1AB0043273E /* LifetimeStoreView.swift */,
@@ -299,6 +301,7 @@
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StoreKit2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -328,6 +331,7 @@
 				DEVELOPMENT_TEAM = 476QK54UU2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StoreKit2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
