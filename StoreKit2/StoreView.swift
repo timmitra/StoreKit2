@@ -13,7 +13,7 @@ import SwiftUI
 import StoreKit
 
 struct StoreView: View {
-    @AppStorage("subscribed") private var subscribed: Bool = false
+    @AppStorage("isSubscribed") private var isSubscribed: Bool = false
     @Environment(\.dismiss) private var dismiss
     @State private var lifetimePage: Bool = false
     @State var purchaseStart: Bool = false
@@ -40,13 +40,12 @@ struct StoreView: View {
             purchaseStart.toggle()
             Task {
                 await store.updateCustomerProductStatus()
-                await updateSubscriptionStatus()
             }
             if case .success(.success(let transaction)) = result {
                 print("Purchased successfully: \(transaction.signedDate)")
-              // update app storage
-              //subscribed = true
-                print("StoreView - AppStorage 'subscribed' value: \(subscribed)")
+                // update app storage
+                isSubscribed = true
+                print("StoreView - AppStorage 'isSubscribed' value: \(isSubscribed)")
             } else {
                 print("Something else happened")
             }
@@ -54,36 +53,72 @@ struct StoreView: View {
         }
         .onAppear {
             printAppStorageValue()
-            
+            Task {
+                //When this view appears, get the latest subscription status.
+                await store.updateCustomerProductStatus()
+            }
         }
         .sheet(isPresented: $lifetimePage) {
-          LifetimeStoreView()
-            .presentationDetents([.height(250)])
-            .presentationBackground(.ultraThinMaterial)
+            LifetimeStoreView()
+                .presentationDetents([.height(250)])
+                .presentationBackground(.ultraThinMaterial)
         }
         Button("More Purchase Options", action: {
-          lifetimePage = true
+            lifetimePage = true
         })
-    }
-    
-    @MainActor
-    func updateSubscriptionStatus() async {
-        if store.subscriptionGroupStatus == .subscribed
-        || store.subscriptionGroupStatus == .inGracePeriod
-        || store.purchasedLifetime {
-            subscribed = true
-        } else if store.subscriptionGroupStatus == .expired {
-            subscribed = false
-        } else {
-            subscribed = false
+        .onChange(of: isSubscribed) { oldValue, newValue in
+            print("1. isSubscribed changed from \(oldValue) to \(newValue)")
+        }
+        .onChange(of: store.purchasedSubscriptions) { _, _ in
+            Task {
+                await store.updateCustomerProductStatus()
+            }
+        }
+        .onChange(of: store.purchasedLifetime) { _, _ in
+            Task {
+                await store.updateCustomerProductStatus()
+            }
         }
     }
+        
+    // not used any more
+    @MainActor
+    func updateSubscriptionStatus() async {
+        print("Updating subscription status...")
+        print("Current subscription group status: \(String(describing: store.subscriptionGroupStatus))")
+        print("Purchased lifetime: \(store.purchasedLifetime)")
+        
+        if store.subscriptionGroupStatus == .subscribed
+            || store.subscriptionGroupStatus == .inGracePeriod
+            || store.purchasedLifetime {
+            // update AppStorage
+            isSubscribed = true
+            print("1. Subscription is active. Setting isSubscribed to true.")
+        } else if store.subscriptionGroupStatus == .expired {
+            isSubscribed = false
+            print("2. Subscription expired. Setting isSubscribed to false.")
+        } else {
+            // commented out because it's wrong
+            // isSubscribed = false
+            print("3. Subscription is not active. Setting isSubscribed to ...")
+        }
+        self.printAppStorageValue()
+    }
+    
     // Function to print the AppStorage value
     func printAppStorageValue() {
-        print("AppStorage 'subscribed' value: \(subscribed)")
+        print("AppStorage 'isSubscribed' value: \(isSubscribed)")
     }
 }
 
 #Preview {
     StoreView()
+}
+
+extension StoreView {
+    func restorePurchases() {
+        Task {
+            await store.updateCustomerProductStatus()
+        }
+    }
 }

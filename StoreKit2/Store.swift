@@ -35,7 +35,7 @@ class Store: ObservableObject {
     @Published private(set) var subscriptions: [Product]
     @Published private(set) var purchasedSubscriptions: [Product] = []
     @Published private(set) var purchasedLifetime: Bool = false
-    @Published private(set) var subscriptionGroupStatus: RenewalState?
+    @Published private(set) var subscriptionGroupStatus: RenewalState? = .none
     
     var updateListenerTask: Task<Void, Error>? = nil
     private let productIDs: [String: String]
@@ -68,24 +68,37 @@ class Store: ObservableObject {
         return data
     }
     
+    //MARK: LISTENER
+    ///This functionality is responsible for listening for updates on App Store Connect or a local StoreKit file,
+    ///which could occur on devices separate from the one you're on
+    ///(i.e. if a family member upgrades to a family plan or when a guardian or bank approves a pending purchase,
+    ///the app will listen for that update and automatically update your availability).
     func listenForTransactions() -> Task<Void, Error> {
       return Task.detached {
+          ///Iterate through any transactions that don't come from a direct call to `purchase()`.
         for await result in Transaction.updates {
           do {
             let transaction = try self.checkVerified(result)
+              print("Verified transaction: \(transaction.id) for product: \(transaction.productID)")
+              ///Deliver products to the user.
             await self.updateCustomerProductStatus()
+              ///Always finish a transaction.
             await transaction.finish()
           } catch {
-            print("transaction failed verification")
+              ///StoreKit has a transaction that fails verification. Don't deliver content to the user.
+            print("Transaction failed verification: \(error)")
           }
         }
       }
     }
     
     func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
+        ///Check whether the JWS passes StoreKit verification.
       switch result {
+          ///StoreKit parses the JWS, but it fails verification.
       case .unverified:
         throw StoreError.failedVerification
+          ///The result is verified. Return the unwrapped value.
       case .verified(let safe):
         return safe
       }
@@ -94,7 +107,9 @@ class Store: ObservableObject {
     @MainActor
     func updateCustomerProductStatus() async {
         var purchasedSubscriptions: [Product] = []
+        //var purchasedLifetime: [Product] = []
         
+        ///Iterate through all of the user's purchased products.
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
@@ -104,23 +119,35 @@ class Store: ObservableObject {
                 switch transaction.productType {
                 case .nonConsumable:
                     purchasedLifetime = true
-                    print("subscribed: lifetime")
+                    print("isSubscribed: lifetime")
                 case .autoRenewable:
                     if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
                         purchasedSubscriptions.append(subscription)
-                        print("subscribed: \(subscription)")
+                        print("isSubscribed: \(subscription)")
                     }
                 default:
                     break
                 }
             } catch {
-                print("could not find products")
+                print("Could not verify transaction: \(error)")
             }
         }
+        //Update the Store information with the purchased products.
         self.purchasedSubscriptions = purchasedSubscriptions
         self.purchasedLifetime = purchasedLifetime
         
+        //Check subscriptionGroupStatus to learn auto-renewable subscription state
         subscriptionGroupStatus = try? await subscriptions.first?.subscription?.status.first?.state
+
+        await updateAppStorage()
+    }
+    
+    @MainActor
+    func updateAppStorage() async {
+        if subscriptionGroupStatus == .expired {
+            UserDefaults.standard.set(false, forKey: "isSubscribed")
+        }
+        print("AppStorage 'isSubscribed' updated to: \(UserDefaults.standard.bool(forKey: "isSubscribed"))")
     }
     
     @MainActor
@@ -138,11 +165,15 @@ class Store: ObservableObject {
                 case .autoRenewable:
                     newSubscriptions.append(product)
                 default:
-                    print("Unknown product")
+                    print("Unknown product type: \(product.type)")
                 }
             }
             lifetime = sortByPrice(newLifetime)
             subscriptions = sortByPrice(newSubscriptions)
+            
+            // Debugging
+            print("Fetched \(newLifetime.count) lifetime products")
+            print("Fetched \(newSubscriptions.count) subscription products")
         } catch {
             print("Failed to request products from the App Store server: \(error)")
         }
