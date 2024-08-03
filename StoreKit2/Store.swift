@@ -119,6 +119,7 @@ class Store: ObservableObject {
                     purchasedLifetime = true
                     print("isSubscribed: lifetime")
                 case .autoRenewable:
+                    print("id: \(transaction.productID)")
                     if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
                         purchasedSubscriptions.append(subscription)
                         print("isSubscribed: \(subscription)")
@@ -137,12 +138,16 @@ class Store: ObservableObject {
         //Check subscriptionGroupStatus to learn auto-renewable subscription state
         subscriptionGroupStatus = try? await subscriptions.first?.subscription?.status.first?.state
 
-        await updateAppStorage()
+        await updateAppStorage(subs: purchasedSubscriptions, life: purchasedLifetime)
     }
     
     @MainActor
-    func updateAppStorage() async {
-        if subscriptionGroupStatus == .expired {
+    func updateAppStorage(subs: [Product], life: Bool) async {
+        if subs.isEmpty && life == false {
+            UserDefaults.standard.set(false, forKey: "isSubscribed")
+        } else if !subs.isEmpty || life == true {
+            UserDefaults.standard.set(true, forKey: "isSubscribed")
+        } else {
             UserDefaults.standard.set(false, forKey: "isSubscribed")
         }
         print("expired? AppStorage 'isSubscribed' updated to: \(UserDefaults.standard.bool(forKey: "isSubscribed"))")
@@ -151,7 +156,12 @@ class Store: ObservableObject {
     @MainActor
     func requestProducts() async {
         do {
-            let storeProducts = try await Product.products(for: productIDs.keys)
+            let ids = [
+                "monthly_subscription",
+                "yearly_subscription",
+                "lifetime_subscription"
+            ]
+            let storeProducts = try await Product.products(for: ids)
             
             var newLifetime: [Product] = []
             var newSubscriptions: [Product] = []
